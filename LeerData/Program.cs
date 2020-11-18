@@ -1,4 +1,5 @@
 ﻿using System;
+using static Conexion;
 
 namespace LeerData
 {
@@ -6,7 +7,13 @@ namespace LeerData
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hola Alumnos al curso ASP.NET Core! - Reacts Hooks");
+            using(var db = new Conexion()){
+                var cursos = db.curso.AsNoTracking();//arreglo IQueryable
+                foreach (var curso in cursos)
+                {
+                    Console.WriteLine(curso.Titulo);
+                }
+            }
         }
     }
 }
