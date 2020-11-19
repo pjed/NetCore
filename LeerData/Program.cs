@@ -1,5 +1,6 @@
 ﻿using System;
-using static Conexion;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace LeerData
 {
@@ -8,10 +9,15 @@ namespace LeerData
         static void Main(string[] args)
         {
             using(var db = new Conexion()){
-                var cursos = db.curso.AsNoTracking();//arreglo IQueryable
+                var cursos = db.Curso.Include(c => c.InstructorLink).ThenInclude(ci => ci.Instructor);
+
                 foreach (var curso in cursos)
                 {
                     Console.WriteLine(curso.Titulo);
+                    foreach (var insLink in curso.InstructorLink)
+                    {
+                        Console.WriteLine("**********"+insLink.Instructor.Nombre);
+                    }
                 }
             }
         }
