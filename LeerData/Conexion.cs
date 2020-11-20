@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using MySql.Data.EntityFrameworkCore.Extensions;
 
 namespace LeerData
 {
@@ -9,7 +10,8 @@ namespace LeerData
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Constructor para iniciar la conexion de la bbdd
-            optionsBuilder.UseSqlServer(Constantes.Constantes.connectionString);
+            //optionsBuilder.UseSqlServer(Constantes.Constantes.connectionString);
+            optionsBuilder.UseMySQL(Constantes.Constantes.connectionStringMySql);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder){
