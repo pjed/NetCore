@@ -6,6 +6,10 @@ namespace LeerData
 {
     public class Conexion : DbContext
     {
+        public Conexion (){
+            DatabaseGenerateAttribute.SetCommandTimeout(150000);
+        }
+
         //Metodo OnConfiguring para configurar el motor de la bbdd
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
