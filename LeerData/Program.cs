@@ -20,6 +20,9 @@ namespace LeerData
                         Console.WriteLine("**********"+insLink.Instructor.Nombre);
                     }
                 }*/
+                // Migracion de clases a SQL en Net Core
+                Console.WriteLine("Inicia la migracion a MYSQL");
+                db.Database.SetCommandTimeout(10000);
                 db.Database.Migrate();
             }
         }
